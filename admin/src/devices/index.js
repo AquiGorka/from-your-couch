@@ -14,7 +14,7 @@ class Devices extends PureComponent {
       },
     }
     const { devices = [], ...rest } = this.props.data
-    this.props.onUpdate({ devices: devices.slice().concat([newDevice]), ...rest })
+    this.props.onUpdate({ devices: devices.concat([newDevice]), ...rest })
   }
 
   onUpdate = (id) => {
@@ -33,7 +33,6 @@ class Devices extends PureComponent {
 
   onDelete = (id) => {
     const { devices, ...rest } = this.props.data
-      console.log(devices.filter(z => z.id!==id))
     this.props.onUpdate({ devices: devices.filter(x => x.id !== id), ...rest })
   }
 
