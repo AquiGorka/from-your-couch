@@ -4,13 +4,13 @@ import './styles.css'
 class Devices extends PureComponent {
 
   onAdd = () => {
-    const { types } = this.props.data
+    const { types = [] } = this.props.data
     const typeId = this.refs.type.value
     const type = types.find(x => x.id === typeId)
     const { controls = [] } = type
     const newState = controls.map(x => { return { id: x.id, value: 0 }})
     const newDevice = {
-      id: Date.now(),
+      id: `${Date.now()}`,
       label: this.refs.label.value,
       type: typeId,
       api: {

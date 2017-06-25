@@ -14,7 +14,7 @@ class Types extends PureComponent {
     // default adds button and then it is "modifyable"
     const { types = [], ...rest } = this.props.data
     const { controls = [], ...other } = types.find(x => x.id === typeId)
-    const newId = Date.now()
+    const newId = `${Date.now()}`
     const newControl = {
       id: newId,
       label: 'New Control',
@@ -96,7 +96,7 @@ class Types extends PureComponent {
   onAdd = () => {
     const { types = [], ...rest } = this.props.data
     const newType = {
-      id: Date.now(),
+      id: `${Date.now()}`,
       label: this.refs.label.value,
     }
     const newTypes = types.concat([newType])
