@@ -8,7 +8,7 @@ export default {
     { id: '2', label: 'Sony Audio', ip: '', controls: [
       { type: 'button', label: 'Power', id: 1, },
       { type: 'slider', label: 'Volume', id: 2, },
-      { type: 'select', label: 'Playlist', id: 3, data: ['Sony Aduio 1', 'Sony Audio 2'], },
+      { type: 'select', label: 'Playlist', id: 3, data: ['Sony Audio 1', 'Sony Audio 2'], },
     ]},
     { id: '3', label: 'Apple TV', ip: '', controls: [
       { type: 'button', label: 'Power', id: 1, },
