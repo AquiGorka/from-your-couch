@@ -9,8 +9,8 @@ import './App.css'
 import firebase from 'firebase'
 import firebaseConfig from '../../firebase.js'
 import Home from './home'
+import Devices from './devices'
 
-const Devices = () => { return (<div>Devices</div>) }
 const Types = () => { return (<div>Types</div>) }
 const NotFound = () => { return (<div>NotFound</div>) }
 
