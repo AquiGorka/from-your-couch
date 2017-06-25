@@ -14,15 +14,31 @@ class Types extends PureComponent {
     // default adds button and then it is "modifyable"
     const { types = [], ...rest } = this.props.data
     const { controls = [], ...other } = types.find(x => x.id === typeId)
+    const newId = Date.now()
     const newControl = {
-      id: Date.now(),
+      id: newId,
       label: 'New Control',
       type: 'button',
     }
     const newControls = controls.concat([newControl])
     const newTypes =  types.filter(x => x.id !== typeId)
       .concat([{ controls: newControls, ...other }])
-    this.props.onUpdate({ types: newTypes, ...rest })
+    // update states
+    // new state id: controlId, value: 0
+    const { devices, ...another } = rest
+    // filter all devices that use the type
+    const needToUpdate = devices.filter(device => device.type === typeId)
+    const noNeedToUpdate = devices.filter(device => device.type !== typeId)
+    // new state
+    const updatedDevices = needToUpdate.map(item => {
+      const { state, ...rest } = item
+      const newState = state.concat([{ id: newId, value: 0 }])
+      return { state: newState, ...rest }
+    })
+    // add them to the filtered devices and send update
+    const newDevices = noNeedToUpdate.concat(updatedDevices)
+    //
+    this.props.onUpdate({ types: newTypes, devices: newDevices, ...another })
   }
   
   onDeleteControl = (typeId, controlId) => {
@@ -31,7 +47,22 @@ class Types extends PureComponent {
     const newControls = controls.filter(x => x.id !== controlId)
     const newTypes = types.filter(x => x.id !== typeId)
       .concat([{ controls: newControls, ...other }]) 
-    this.props.onUpdate({ types: newTypes, ...rest })
+    // update states
+    // remove state: id: controlId
+    const { devices, ...another } = rest
+    // filter all devices that use the type
+    const needToUpdate = devices.filter(device => device.type === typeId)
+    const noNeedToUpdate = devices.filter(device => device.type !== typeId)
+    // filter out removed states
+    const updatedDevices = needToUpdate.map(item => {
+      const { state, ...rest } = item
+      const newState = state.filter(x => x.id !== controlId)
+      return { state: newState, ...rest }
+    })
+    // add them to the filtered devices and send update
+    const newDevices = noNeedToUpdate.concat(updatedDevices)
+    //
+    this.props.onUpdate({ types: newTypes, devices: newDevices, ...another })
   }
 
   onUpdateControl = (typeId, controlId,  newControl) => {
@@ -41,7 +72,24 @@ class Types extends PureComponent {
       .concat([newControl])
     const newTypes = types.filter(x => x.id !== typeId)
       .concat([{ controls: newControls, ...other }]) 
-    this.props.onUpdate({ types: newTypes, ...rest })
+    // update states
+    // modify state to value: zero, id: controlId (like resetting)
+    // new state id: controlId, value: 0
+    const { devices, ...another } = rest
+    // filter all devices that use the type
+    const needToUpdate = devices.filter(device => device.type === typeId)
+    const noNeedToUpdate = devices.filter(device => device.type !== typeId)
+    // reset values
+    const updatedDevices = needToUpdate.map(item => {
+      const { state, ...rest } = item
+      const newState = state.filter(x => x.id !== controlId)
+        .concat([{ id: controlId, value: 0 }])
+      return { state: newState, ...rest }
+    })
+    // add them to the filtered devices and send update
+    const newDevices = noNeedToUpdate.concat(updatedDevices)
+    //
+    this.props.onUpdate({ types: newTypes, devices: newDevices, ...another })
   }
 
   // types
@@ -71,6 +119,15 @@ class Types extends PureComponent {
   }
 
   onDelete = (id) => {
+    // alert in case there are devices associated to this type
+    const { devices } = this.props.data
+    const associated = devices.filter(x => x.type === id)
+    if (associated.length) {
+      const whichOnes = associated.map(x => x.label)
+      alert(`You can't delete a Device Type if it is associated to one or more Devices (${whichOnes}).`)
+      return
+    }
+    //
     const { types, ...rest } = this.props.data
     const newTypes = types.filter(x => x.id !== id)
     this.props.onUpdate({ types: newTypes, ...rest })

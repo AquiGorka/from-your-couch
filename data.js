@@ -20,8 +20,8 @@ export default {
     ]},
   ],
   devices: [
-    { id: '1-bedroom-apple-tv', label: 'Bedroom Apple TV', type: '3', api: { verb: '', url: '' }, state: [ { id:1, value: 0 }, { id:2, value: 0 }, { id:3, value: 0 } ]},
-    { id: '2-livingroom-player', label: 'Livingroom Player', type: '1', api: { verb: '', url: '' }, state: [ { id:1, value: 0 }, { id:2, value: 0 }, { id:3, value: 0 } ]},
-    { id: '3-livingroom-lights', label: 'Livingroom Lights', type: '4', api: { verb: '', url: '' }, state: [ { id:1, value: 0 } ]},
+    { id: '1-bedroom-apple-tv', label: 'Bedroom Apple TV', type: '3', api: { verb: '', url: '' }, state: [ { id: 1, value: 0 }, { id: 2, value: 0 }, { id: 3, value: 0 } ]},
+    { id: '2-livingroom-player', label: 'Livingroom Player', type: '1', api: { verb: '', url: '' }, state: [ { id: 1, value: 0 }, { id: 2, value: 0 }, { id: 3, value: 0 } ]},
+    { id: '3-livingroom-lights', label: 'Livingroom Lights', type: '4', api: { verb: '', url: '' }, state: [ { id: 1, value: 0 } ]},
   ],
 }

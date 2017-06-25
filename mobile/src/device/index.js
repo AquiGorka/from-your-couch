@@ -52,6 +52,9 @@ class Device extends PureComponent {
     const { match, data = {} } = this.props
     const { devices = [], types = [] } = data
     const device = devices.find(x => x.id === match.params.device)
+    if (!device) {
+      return <div>Device Not Found</div>
+    }
     const { state } = device
     const type = types.find(x => x.id === device.type)
     const { controls = [] } = type
@@ -63,6 +66,9 @@ class Device extends PureComponent {
             const controlState = state.find(x => x.id === item.id)
             const { value } = state
             const { id, type, label } = item
+            if (!controlState) {
+              return <li key={index}></li>
+            }
             return (
               <li key={index}>
                 <div>

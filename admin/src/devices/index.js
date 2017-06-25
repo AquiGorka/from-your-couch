@@ -4,31 +4,46 @@ import './styles.css'
 class Devices extends PureComponent {
 
   onAdd = () => {
+    const { types } = this.props.data
+    const typeId = this.refs.type.value
+    const type = types.find(x => x.id === typeId)
+    const { controls = [] } = type
+    const newState = controls.map(x => { return { id: x.id, value: 0 }})
     const newDevice = {
       id: Date.now(),
       label: this.refs.label.value,
-      type: this.refs.type.value,
+      type: typeId,
       api: {
         verb: this.refs.verb.value,
         url: this.refs.url.value,
       },
+      state: newState,
     }
     const { devices = [], ...rest } = this.props.data
-    this.props.onUpdate({ devices: devices.concat([newDevice]), ...rest })
+    const newDevices = devices.concat([newDevice])
+    this.props.onUpdate({ devices: newDevices, ...rest })
   }
 
   onUpdate = (id) => {
     const { devices, ...rest } = this.props.data
+    const { types } = rest
+    const typeId = this.refs[`type_${id}`].value
+    const type = types.find(x => x.id === typeId)
+    const { controls = [] } = type
+    const newState = controls.map(x => { return { id: x.id, value: 0 }})
     const modifiedDevice = {
       id: id,
       label: this.refs[`label_${id}`].value,
-      type: this.refs[`type_${id}`].value,
+      type: typeId,
       api: {
         verb: this.refs[`verb_${id}`].value,
         url: this.refs[`url_${id}`].value,
       },
+      state: newState,
     }
-    this.props.onUpdate({ devices: devices.filter(x => x.id !== id).concat([modifiedDevice]), ...rest })
+    const newDevices = devices.filter(x => x.id !== id)
+      .concat([modifiedDevice])
+    this.props.onUpdate({ devices: newDevices, ...rest })
   }
 
   onDelete = (id) => {
