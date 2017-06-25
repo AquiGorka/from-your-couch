@@ -1,4 +1,5 @@
 node_modules/*
 admin/node_modules/*
+mobile/node_modules/*
 .DS_Store
 firebase.js
