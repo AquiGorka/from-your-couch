@@ -14,12 +14,34 @@ class Home extends PureComponent {
 
   render() {
     const { data = {}, onUpdate } = this.props
+    const { devices = [], types = [] } = data
     return (
       <div>
-        <textarea ref="data" defaultValue={JSON.stringify(data, null, 2)} />
-        <input type="button" onClick={this.onClick} value="Update" />
-        <input type="button" onClick={this.onReset} value="Reset" />
-        <div>{JSON.stringify(data)}</div>
+        <ul>
+          {devices.sort((a, b) => a.id > b.id).map(item => {
+            const type = types.find(x => x.id === item.type)
+            const { label = '' } = type
+            return (
+              <li key={item.id}>
+                <div>
+                  {`${item.label} (${label})`}
+                </div>
+                <ul>
+                  {item.state.map(curr => {
+                    const { controls = [] } = type
+                    const control = controls.find(x => x.id === curr.id)
+                    const { label = '' } = control
+                    return (
+                      <li key={`${item.id}_${curr.id}`}>
+                        <div>{`${label}: ${curr.value}`}</div>
+                      </li>
+                    )
+                  })}
+                </ul>
+              </li>
+            )
+          })}
+        </ul>
       </div>
     )
   }

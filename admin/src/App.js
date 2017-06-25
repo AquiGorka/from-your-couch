@@ -9,6 +9,7 @@ import './App.css'
 import firebase from 'firebase'
 import firebaseConfig from '../../firebase.js'
 import Home from './home'
+import Raw from './raw'
 import Devices from './devices'
 import Types from './types'
 
@@ -44,9 +45,14 @@ class App extends Component {
             </ul>
           </nav>
           <Switch>
-            <Route exact path='/' render={(props) => <Home {...props} data={this.state.data} onUpdate={this.onUpdate} />} />
-            <Route exact path='/devices' render={(props) => <Devices {...props} data={this.state.data} onUpdate={this.onUpdate} />} />
-            <Route exact path='/types' render={(props) => <Types {...props} data={this.state.data} onUpdate={this.onUpdate} />} />
+            <Route exact path='/' render={(props) =>
+              <Home {...props} data={this.state.data} onUpdate={this.onUpdate} />} />
+            <Route exact path='/devices' render={(props) =>
+              <Devices {...props} data={this.state.data} onUpdate={this.onUpdate} />} />
+            <Route exact path='/types' render={(props) =>
+              <Types {...props} data={this.state.data} onUpdate={this.onUpdate} />} />
+            <Route exact path='/raw' render={(props) =>
+              <Raw {...props} data={this.state.data} onUpdate={this.onUpdate} />} />
             <Route component={NotFound} />
           </Switch>
         </main>
