@@ -8,8 +8,8 @@ import {
 import './App.css'
 import firebase from 'firebase'
 import firebaseConfig from '../../firebase.js'
-const Home = () => { return <div>Home</div> }
-const Device = () => { return <div>Device</div> }
+import Home from './home'
+import Device from './device'
 const Control = () => { return <div>Control</div> }
 
 const NotFound = () => { return (<div>NotFound</div>) }
@@ -37,9 +37,12 @@ class App extends Component {
     return (
       <Router>
         <Switch>
-          <Route exact path='/' render={(props) => <Home {...props} data={data}/>} />
-          <Route exact path='/:device' render={(props) => <Device {...props} data={data} onUpdate={this.onUpdate} />} />
-          <Route exact path='/:device/:control' render={(props) => <Control {...props} data={data} onUpdate={this.onUpdate} />} />
+          <Route exact path='/' render={(props) =>
+            <Home {...props} data={data}/>} />
+          <Route exact path='/:device' render={(props) =>
+            <Device {...props} data={data} onUpdate={this.onUpdate} />} />
+          <Route exact path='/:device/:control' render={(props) =>
+            <Control {...props} data={data} onUpdate={this.onUpdate} />} />
           <Route component={NotFound} />
         </Switch>
       </Router>

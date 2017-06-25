@@ -27,7 +27,7 @@ class Home extends PureComponent {
                   {`${item.label} (${label})`}
                 </div>
                 <ul>
-                  {item.state.map(curr => {
+                  {item.state.sort((a, b) => a.id > b.id).map(curr => {
                     const { controls = [] } = type
                     const control = controls.find(x => x.id === curr.id)
                     const { label = '' } = control
