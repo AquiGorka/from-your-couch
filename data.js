@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   types: [
     { id: '1', label: 'Samsung Audio', ip: '', controls: [
       { id: 'button', label: 'Power' },
