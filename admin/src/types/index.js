@@ -120,7 +120,7 @@ class Types extends PureComponent {
 
   onDelete = (id) => {
     // alert in case there are devices associated to this type
-    const { devices } = this.props.data
+    const { devices = [] } = this.props.data
     const associated = devices.filter(x => x.type === id)
     if (associated.length) {
       const whichOnes = associated.map(x => x.label)

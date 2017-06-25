@@ -12,6 +12,7 @@ import Home from './home'
 import Raw from './raw'
 import Devices from './devices'
 import Types from './types'
+import { version } from '../package.json'
 
 const NotFound = () => { return (<div>NotFound</div>) }
 
@@ -28,6 +29,9 @@ class App extends Component {
  
   onUpdate = data => {
     console.log('Sending data: ', data)
+    if (!data || !data.version) {
+      data.version = version
+    }
     firebase.database().ref().set(data);
   }
   render() {
