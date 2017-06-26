@@ -136,7 +136,13 @@ class NewDevice extends PureComponent {
     this.props.onAdd(newDevice)
   }
 
-  componentDidMount = () => {
+  componentDidMount= () => {
+    const { types } = this.props
+    if (types.length) {
+      this.setState({ type: types[0].id })
+    }
+  }
+  componentDidUpdate = () => {
     const { types } = this.props
     if (types.length) {
       this.setState({ type: types[0].id })
@@ -150,8 +156,8 @@ class NewDevice extends PureComponent {
         <CardTitle subtitle="Add new Device" />
         <CardText className="device-add">
           <div>
-            <input type="text" placeholder="Label" onChange={value => {
-              this.setState({ label: value })
+            <input type="text" ref="label" placeholder="Label" onChange={value => {
+              this.setState({ label: this.refs.label.value })
             }} />
           </div>
           <div>
@@ -168,12 +174,12 @@ class NewDevice extends PureComponent {
           </div>
           <div>
             <input type="text" ref="verb" placeholder="Verb" onChange={value => {
-              this.setState({ verb: value })
+              this.setState({ verb: this.refs.verb.value })
             }} />
           </div>
           <div>
             <input type="text" ref="url" placeholder="URL" onChange={value => {
-              this.setState({ url: value })
+              this.setState({ url: this.refs.url.value })
             }} />
           </div>
           <Button label="Add" onClick={this.onAdd} />
