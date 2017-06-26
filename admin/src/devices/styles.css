@@ -1,0 +1,28 @@
+.panel-fix{
+  left: 0 !important;
+}
+
+.wrapper input{
+  margin: 3px;
+}
+
+.wrapper select{
+  margin: 3px
+}
+
+.delete{
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 14px;
+  font-weight: bold;
+  color: #8B0000;
+  cursor: pointer;
+  width: 15px;
+  height: 15px;
+  text-align: center;
+}
+
+.device-card{
+  position: relative;
+}
