@@ -43,7 +43,7 @@ class App extends Component {
       <div className="app">
 
         <AppBar
-          title='FYC'
+          title='From Your Couch'
           rightIcon={<CouchIcon />}
           onRightIconClick={() => { window.location = '/'}}
           />
