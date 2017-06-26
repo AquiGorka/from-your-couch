@@ -18,6 +18,16 @@ class Devices extends PureComponent {
     const { devices, ...rest } = this.props.data
     const newDevices = devices.filter(x => x.id !== modifiedDevice.id)
       .concat([modifiedDevice])
+    // update state
+    const { types = [] } = this.props.data
+    // reset state for the modified device
+    const { state, ...other } = modifiedDevice
+    const type = types.find(x => x.id === modifiedDevice.type)
+    const { controls = [] } = type
+    const newState = controls.map(x => { return { id: x.id, value: 0 }})
+    const againModified = { state: newState, ...other }
+    const newerDevices = devices.filter(x => x.id !== againModified.id)
+      .concat([againModified])
     this.props.onUpdate({ devices: newDevices, ...rest })
   }
 
@@ -112,12 +122,16 @@ class Device extends PureComponent {
 }
 
 class NewDevice extends PureComponent {
-  state = { label: '', type: '', verb: '', url: '' }
+  state = { label: '', type: -1, verb: '', url: '' }
 
   onAdd = () => {
     const { types = [] } = this.props
     if (types.length === 0) {
       alert('Please add a new Device Type before trying to add new Devices')
+      return
+    }
+    if (this.state.type === -1) {
+      alert('Please select a Device Type to add new Devices')
       return
     }
     const type = types.find(x => x.id === this.state.type)
@@ -134,19 +148,6 @@ class NewDevice extends PureComponent {
       state: newState,
     }
     this.props.onAdd(newDevice)
-  }
-
-  componentDidMount= () => {
-    const { types } = this.props
-    if (types.length) {
-      this.setState({ type: types[0].id })
-    }
-  }
-  componentDidUpdate = () => {
-    const { types } = this.props
-    if (types.length) {
-      this.setState({ type: types[0].id })
-    }
   }
 
   render() {
@@ -167,7 +168,7 @@ class NewDevice extends PureComponent {
                 this.setState({ type: this.refs.select.value })
               }}
               ref="select">
-              {types.map(item => {
+              {[{ id: -1, label: 'Choose a device type'}].concat(types).map(item => {
                 return <option key={item.id} value={item.id}>{item.label}</option>                   
               })}
             </select>

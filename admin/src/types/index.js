@@ -15,8 +15,7 @@ const controls = [
 class Types extends PureComponent {
 
   // controls
-  onAddControl = (modifiedType) => {
-    console.log('onaddcontrol: ', modifiedType)
+  onAddControl = (modifiedType, newId) => {
     const { types = [], ...rest } = this.props.data
     const newTypes = types.filter(x => x.id !== modifiedType.id)
       .concat(modifiedType)
@@ -167,14 +166,15 @@ class NewDeviceTypeControl extends PureComponent {
     const { onAdd, types } = this.props
     const type = types.find(x => x.id === this.state.typeId)
     const { controls = [], ...rest  } = type
+    const newId = `${Date.now()}`
     const newControl = {
-      id: `${Date.now()}`,
+      id: newId,
       label: 'Control name',
       type: 'button'
     }
     const newControls = controls.concat([newControl])
     const modifiedType = { controls: newControls, ...rest }
-    onAdd(modifiedType)
+    onAdd(modifiedType, newId)
   }
   
   render() {
