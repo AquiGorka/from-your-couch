@@ -24,7 +24,7 @@ class Home extends PureComponent {
           {devices.sort((a, b) => a.id > b.id).map(item => {
             const type = types.find(x => x.id === item.type)
             const { label: typeLabel = '' } = type
-            const { state = [], label  } = item
+            const { state = [], label = ''  } = item
             return (
               <div key={item.id}>
                 <Card className="card-layout">
@@ -37,7 +37,6 @@ class Home extends PureComponent {
                     {state.sort((a, b) => a.id > b.id).map(curr => {
                       const { controls = [] } = type
                       const control = controls.find(x => x.id === curr.id)
-                      const { label: controlLabel = '' } = control
                       return (
                         <li key={`${item.id}_${curr.id}`}>
                           <div className="wrapper">
@@ -58,32 +57,37 @@ class Home extends PureComponent {
 }
 
 const Raw = (props) => {
-  const { control, state } = props
-  return <div>{`${control.label}: ${state.value}`}</div>
+  const { control = {}, state = {} } = props
+  const { label = '' } = control
+  const { value = 0 } = state
+  return <div>{`${label}: ${value}`}</div>
 }
 
 const Button = (props) => {
-  const { control, state } = props
+  const { control = {}, state = {} } = props
+  const { label = '' } = control
+  const { value = 0 } = state
   return (
     <div className="item button">
       <div className="label">
-      {`${control.label}`}
+      {`${label}`}
       </div>
       <div className="display">
-      <Toggle checked={!!state.value} value="yes" disabled={true} />
+      <Toggle checked={!!value} value="yes" disabled={true} />
       </div>
     </div>
   )
 }
 
 const Select = (props) => {
-  const { control, state } = props
-  const { data = [] } = control
-  const value = data.find((x, i) => i == state.value)
+  const { control = {}, state = {} } = props
+  const { value: stateValue = 0 } = state
+  const { data = [], label = '' } = control
+  const value = data.find((x, i) => i == stateValue)
   return (
     <div className="item select">
       <div className="label">
-      {`${control.label}`}
+      {`${label}`}
       </div>
       <div className="display">
       {`${value}`}
@@ -93,16 +97,18 @@ const Select = (props) => {
 }
 
 const Slider = (props) => {
-  const { control, state } = props
+  const { control = {}, state = {} } = props
+  const { label = '' } = control
+  const { value = 0 } = state
   const textStyle = { 'fontSize': 12, 'fill': '#ffffff', 'textAnchor': 'middle' }
   return (
     <div className="item slider">
       <div className="label">
-      {`${control.label}`}
+      {`${label}`}
       </div>
       <div className="display">
       <ProgressLabel
-        progress={state.value}
+        progress={value}
         startDegree={60}
         progressWidth={8}
         trackWidth={20}
@@ -111,7 +117,7 @@ const Slider = (props) => {
         fillColor="black"
         trackColor="white"
         progressColor="#ADFF2F">
-          <text x="40" y="45" style={textStyle}>{`${state.value}%`}</text>
+          <text x="40" y="45" style={textStyle}>{`${value}%`}</text>
       </ProgressLabel>
       </div>
     </div>
@@ -120,9 +126,10 @@ const Slider = (props) => {
 
 class Mapper extends PureComponent {
   render() {
-    const { control } = this.props
+    const { control = {} } = this.props
+    const { type = 'raw' } = control
     let component = <Raw {...this.props} />
-    switch (control.type) {
+    switch (type) {
       case 'button':
         component = <Button {...this.props} />
         break;
