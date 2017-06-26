@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react'
 import { Link } from 'react-router-dom'
 import './styles.css'
-import { List, ListItem, ListSubHeader, ListDivider, ListCheckbox } from 'react-toolbox/lib/list';
+import { List, ListItem, ListSubHeader } from 'react-toolbox/lib/list';
 
 
 class Home extends PureComponent {

@@ -15,6 +15,7 @@ import AppBar from 'react-toolbox/lib/app_bar';
 import Navigation from 'react-toolbox/lib/navigation';
 import { Link as RTLink } from 'react-toolbox/lib/link';
 import CouchIcon from './couch-icon.js'
+import MDSpinner from "react-md-spinner";
 
 const NotFound = () => { return (<div>NotFound</div>) }
 
@@ -36,7 +37,7 @@ class App extends Component {
   render() {
     const { data = {}, synching } = this.state
     if (synching) {
-      return <div>Loading</div>
+      return <div className="spinner"><MDSpinner size="64" /></div>
     }
     return (
       <div className="app">
