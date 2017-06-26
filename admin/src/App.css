@@ -1,3 +1,15 @@
+.menu{
+  padding: 30px 20px !important;
+}
+
+.menu li{
+  padding: 6px 0 !important;
+}
+
+.menu a{
+  text-decoration: none;
+}
+
 .couch-icon{
   position: relative;
   top: 4px;

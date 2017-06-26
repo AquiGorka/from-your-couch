@@ -17,6 +17,7 @@ import { AppBar, IconButton } from 'react-toolbox';
 import { Layout, NavDrawer, Panel } from 'react-toolbox';
 import CouchIcon from './couch-icon.js'
 import MDSpinner from "react-md-spinner";
+import { List, ListItem } from 'react-toolbox/lib/list';
 
 const NotFound = () => { return (<div>NotFound</div>) }
 
@@ -40,21 +41,22 @@ class App extends Component {
   }
   render() {
     const { synching } = this.state
+    const { history } = this.props
     if (synching) {
       return <div className="spinner"><MDSpinner size="64" /></div>
     }
     return (
-      <Layout>
-        <NavDrawer pinned={true}>
-          <ul>
-            <li><div to="/">Home</div></li>
-            <li><div to="/devices">Devices</div></li>
-            <li><div to="/types">Types</div></li>
-          </ul>
-        </NavDrawer>
-        <Panel>
-          <AppBar title="From your Couch" rightIcon={<CouchIcon />} />
-          <Router>
+      <Router>
+        <Layout>
+          <NavDrawer pinned={true}>
+            <List ripple className="menu">
+              <ListItem avatar="https://maxcdn.icons8.com/Share/icon/p1em/Very_Basic//home1600.png" caption="Home" to="/" />
+              <ListItem avatar="http://icons.iconarchive.com/icons/icons8/windows-8/512/Mobile-Multiple-Devices-icon.png" caption="Devices" to="/devices" />
+              <ListItem avatar="https://cdn1.iconfinder.com/data/icons/flat-web-browser/100/settings-512.png" caption="Types" to="/types" />
+            </List>
+          </NavDrawer>
+          <Panel>
+            <AppBar title="From Your Couch" rightIcon={<CouchIcon />} />
             <Switch>
               <Route exact path='/' render={(props) =>
                 <Home {...props} data={this.state.data} onUpdate={this.onUpdate} />} />
@@ -66,9 +68,9 @@ class App extends Component {
                 <Raw {...props} data={this.state.data} onUpdate={this.onUpdate} />} />
               <Route component={NotFound} />
             </Switch>
-          </Router>
-        </Panel>
-      </Layout>
+          </Panel>
+        </Layout>
+      </Router>
     )
   }
 }
