@@ -73,35 +73,35 @@ class Device extends PureComponent {
       <Card className="device-card">
         <CardTitle subtitle={label} />
         <CardText>
-        <div className="wrapper">
-          <div className="delete" onClick={() => { onDelete(id) }}>x</div>  
-          <input
-            ref={`label_${item.id}`}
-            type="text"
-            defaultValue={label}
-            placeholder="Label"
-            onChange={this.onUpdate} />
-          <input
-            type="text"
-            ref={`url_${item.id}`}
-            defaultValue={url}
-            placeholder="API URL"
-            onChange={this.onUpdate} />
-          <input
-            type="text"
-            ref={`verb_${item.id}`}
-            defaultValue={verb}
-            placeholder="API Verb"
-            onChange={this.onUpdate} />
-          <select
-            defaultValue={item.type}
-            ref={`type_${id}`}
-            onChange={this.onUpdate}>
-              {types.map((item, index) => 
-                <option key={index} value={item.id}>{item.label}</option>
-              )}
-          </select>
-        </div>
+          <div className="wrapper">
+            <div className="delete" onClick={() => { onDelete(id) }}>x</div>  
+            <input
+              ref={`label_${item.id}`}
+              type="text"
+              defaultValue={label}
+              placeholder="Label"
+              onChange={this.onUpdate} />
+            <input
+              type="text"
+              ref={`url_${item.id}`}
+              defaultValue={url}
+              placeholder="API URL"
+              onChange={this.onUpdate} />
+            <input
+              type="text"
+              ref={`verb_${item.id}`}
+              defaultValue={verb}
+              placeholder="API Verb"
+              onChange={this.onUpdate} />
+            <select
+              defaultValue={item.type}
+              ref={`type_${id}`}
+              onChange={this.onUpdate}>
+                {types.map((item, index) => 
+                  <option key={index} value={item.id}>{item.label}</option>
+                )}
+            </select>
+          </div>
         </CardText>
       </Card>
     ) 
@@ -144,7 +144,7 @@ class NewDevice extends PureComponent {
     const { types } = this.props
     return (
       <Card>
-        <CardTitle title="Add new device" />
+        <CardTitle title="Add new Device" />
         <CardText>
           <Input type="text" placeholder="Label" onChange={value => {
             this.setState({ label: value })
