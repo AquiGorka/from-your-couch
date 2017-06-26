@@ -10,7 +10,10 @@ import firebase from 'firebase'
 import firebaseConfig from '../../firebase.js'
 import Home from './home'
 import Device from './device'
-const Control = () => { return <div>Control</div> }
+import AppBar from 'react-toolbox/lib/app_bar';
+import Navigation from 'react-toolbox/lib/navigation';
+import { Link as RTLink } from 'react-toolbox/lib/link';
+import CouchIcon from './couch-icon.js'
 
 const NotFound = () => { return (<div>NotFound</div>) }
 
@@ -35,17 +38,23 @@ class App extends Component {
       return <div>Loading</div>
     }
     return (
-      <Router>
-        <Switch>
-          <Route exact path='/' render={(props) =>
-            <Home {...props} data={data}/>} />
-          <Route exact path='/:device' render={(props) =>
-            <Device {...props} data={data} onUpdate={this.onUpdate} />} />
-          <Route exact path='/:device/:control' render={(props) =>
-            <Control {...props} data={data} onUpdate={this.onUpdate} />} />
-          <Route component={NotFound} />
-        </Switch>
-      </Router>
+      <div className="app">
+
+        <AppBar title='FYC' rightIcon={<CouchIcon />} />
+
+        <Router>
+          <Switch>
+            <Route exact path='/' render={(props) =>
+              <Home {...props} data={data}/>} />
+            <Route exact path='/:device' render={(props) =>
+              <Device {...props} data={data} onUpdate={this.onUpdate} />} />
+            <Route exact path='/:device/:control' render={(props) =>
+              <Control {...props} data={data} onUpdate={this.onUpdate} />} />
+            <Route component={NotFound} />
+          </Switch>
+        </Router>
+      
+      </div>
     )
   }
 }

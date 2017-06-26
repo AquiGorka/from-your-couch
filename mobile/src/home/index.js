@@ -12,7 +12,7 @@ class Home extends PureComponent {
     const { data = {} } = this.props
     const { devices = [] } = data
     return (
-      <div>
+      <div className="section">
         <ul>
           {devices.sort((a, b) => a.id > b.id).map(item => 
             <li key={item.id}>
