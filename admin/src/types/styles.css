@@ -61,6 +61,7 @@
 }
 
 .control-data-item{
+  padding: 2px;
   position: relative;
 }
 
@@ -74,7 +75,7 @@
 
 .control-data-delete{
   position: absolute;
-  top: 6px;
+  top: 4px;
   left: -12px;
   font-size: 10px;
   font-weight: bold;

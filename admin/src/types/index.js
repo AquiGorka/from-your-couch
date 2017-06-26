@@ -341,7 +341,7 @@ class ControlDatalist extends PureComponent {
               const newData = data.filter((x, i) => i !== index)
               onUpdate(newData)
             }}>x</div>
-            <div><input ref="label" type="text" defaultValue={item} /></div>
+            <div>{item}</div>
           </li>
         )}
       </ul>
