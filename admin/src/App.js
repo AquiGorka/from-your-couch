@@ -15,6 +15,7 @@ import Types from './types'
 import { version } from '../package.json'
 import { AppBar, IconButton } from 'react-toolbox';
 import { Layout, NavDrawer, Panel } from 'react-toolbox';
+import CouchIcon from './couch-icon.js'
 import MDSpinner from "react-md-spinner";
 
 const NotFound = () => { return (<div>NotFound</div>) }
@@ -52,7 +53,7 @@ class App extends Component {
           </ul>
         </NavDrawer>
         <Panel>
-          <AppBar title="From your Couch" />
+          <AppBar title="From your Couch" rightIcon={<CouchIcon />} />
           <Router>
             <Switch>
               <Route exact path='/' render={(props) =>
