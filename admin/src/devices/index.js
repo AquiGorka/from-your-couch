@@ -122,7 +122,7 @@ class Device extends PureComponent {
 }
 
 class NewDevice extends PureComponent {
-  state = { label: '', type: -1, verb: '', url: '' }
+  state = { label: '', type: '-1', verb: '', url: '' }
 
   onAdd = () => {
     const { types = [] } = this.props
@@ -130,7 +130,7 @@ class NewDevice extends PureComponent {
       alert('Please add a new Device Type before trying to add new Devices')
       return
     }
-    if (this.state.type === -1) {
+    if (this.state.type === '-1') {
       alert('Please select a Device Type to add new Devices')
       return
     }
@@ -168,7 +168,7 @@ class NewDevice extends PureComponent {
                 this.setState({ type: this.refs.select.value })
               }}
               ref="select">
-              {[{ id: -1, label: 'Choose a device type'}].concat(types).map(item => {
+              {[{ id: '-1', label: 'Choose a device type'}].concat(types).map(item => {
                 return <option key={item.id} value={item.id}>{item.label}</option>                   
               })}
             </select>
