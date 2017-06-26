@@ -13,6 +13,8 @@ import Raw from './raw'
 import Devices from './devices'
 import Types from './types'
 import { version } from '../package.json'
+import { AppBar, IconButton } from 'react-toolbox';
+import { Layout, NavDrawer, Panel } from 'react-toolbox';
 
 const NotFound = () => { return (<div>NotFound</div>) }
 
@@ -39,28 +41,31 @@ class App extends Component {
       return <div>Loading</div>
     }
     return (
-      <Router>
-        <main>
-          <nav>
-            <ul>
-              <li><Link to="/">Home</Link></li>
-              <li><Link to="/devices">Devices</Link></li>
-              <li><Link to="/types">Types</Link></li>
-            </ul>
-          </nav>
-          <Switch>
-            <Route exact path='/' render={(props) =>
-              <Home {...props} data={this.state.data} onUpdate={this.onUpdate} />} />
-            <Route exact path='/devices' render={(props) =>
-              <Devices {...props} data={this.state.data} onUpdate={this.onUpdate} />} />
-            <Route exact path='/types' render={(props) =>
-              <Types {...props} data={this.state.data} onUpdate={this.onUpdate} />} />
-            <Route exact path='/raw' render={(props) =>
-              <Raw {...props} data={this.state.data} onUpdate={this.onUpdate} />} />
-            <Route component={NotFound} />
-          </Switch>
-        </main>
-      </Router>
+      <Layout>
+        <NavDrawer pinned={true}>
+          <ul>
+            <li><div to="/">Home</div></li>
+            <li><div to="/devices">Devices</div></li>
+            <li><div to="/types">Types</div></li>
+          </ul>
+        </NavDrawer>
+          <Panel>
+            <AppBar title="From your Couch" />
+            <Router>
+              <Switch>
+                <Route exact path='/' render={(props) =>
+                  <Home {...props} data={this.state.data} onUpdate={this.onUpdate} />} />
+                <Route exact path='/devices' render={(props) =>
+                  <Devices {...props} data={this.state.data} onUpdate={this.onUpdate} />} />
+                <Route exact path='/types' render={(props) =>
+                  <Types {...props} data={this.state.data} onUpdate={this.onUpdate} />} />
+                <Route exact path='/raw' render={(props) =>
+                  <Raw {...props} data={this.state.data} onUpdate={this.onUpdate} />} />
+                <Route component={NotFound} />
+              </Switch>
+            </Router>
+          </Panel>
+      </Layout>
     )
   }
 }

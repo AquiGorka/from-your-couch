@@ -18,7 +18,8 @@
     "react-router-dom": "^4.1.1"
   },
   "devDependencies": {
-    "nwb": "0.16.x"
+    "nwb": "0.16.x",
+    "react-toolbox": "^2.0.0-beta.12"
   },
   "author": "Gorka",
   "license": "MIT",
