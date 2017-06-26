@@ -26,9 +26,7 @@ class Home extends PureComponent {
                 avatar='https://maxcdn.icons8.com/Share/icon/User_Interface//horizontal_settings_mixer1600.png'
                 caption={label}
                 legend={typeLabel}
-                onClick={() => {
-                  history.push(`/${id}`)
-                }}
+                to={`/${id}`}
               />
             )
           })}

@@ -3,12 +3,11 @@ import Switch from 'react-toolbox/lib/switch';
 
 class Button extends PureComponent {
   render() {
-    const { state, onUpate, label = '' } = this.props
+    const { state, onUpate } = this.props
     const { id, value } = state
     return (
       <Switch
         checked={!!value}
-        label={label}
         onChange={() => {
           this.props.onUpdate({ id, value: !!value ? 0 : 1 })
         }} />
