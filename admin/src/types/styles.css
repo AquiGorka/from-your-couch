@@ -1,0 +1,94 @@
+.panel-fix{
+  left: 0 !important;
+}
+
+.wrapper input{
+  margin: 3px;
+}
+
+.wrapper select{
+  margin: 3px
+}
+
+.delete{
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 14px;
+  font-weight: bold;
+  color: #8B0000;
+  cursor: pointer;
+  width: 15px;
+  height: 15px;
+  text-align: center;
+}
+
+.type-card{
+  position: relative;
+}
+
+.control-list{
+  list-style: none;
+}
+
+.control-item{
+  position: relative;
+}
+
+.control-item input{
+  margin: 3px;
+}
+
+.control-item select{
+  margin: 3px;
+}
+
+.delete-control{
+  position: absolute;
+  top: 5px;
+  left: -15px;
+  font-size: 12px;
+  font-weight: bold;
+  color: #8B0000;
+  cursor: pointer;
+  width: 15px;
+  height: 15px;
+  text-align: center;
+}
+
+.control-data-list{
+  list-style: none;
+}
+
+.control-data-item{
+  position: relative;
+}
+
+.control-data-item input{
+  margin: 3px;
+}
+
+.control-data-item select{
+  margin: 3px;
+}
+
+.control-data-delete{
+  position: absolute;
+  top: 6px;
+  left: -12px;
+  font-size: 10px;
+  font-weight: bold;
+  color: #8B0000;
+  cursor: pointer;
+  width: 15px;
+  height: 15px;
+  text-align: center;
+}
+
+.data-add-item-wrapper input{
+  margin: 6px;
+}
+
+.data-add-item-wrapper select{
+  margin: 6px;
+}
