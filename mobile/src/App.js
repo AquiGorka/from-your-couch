@@ -3,7 +3,8 @@ import {
   BrowserRouter as Router,
   Route,
   Switch,
-  Link
+  Link,
+  withRouter
 } from 'react-router-dom'
 import './App.css'
 import firebase from 'firebase'
@@ -40,7 +41,10 @@ class App extends Component {
     return (
       <div className="app">
 
-        <AppBar title='FYC' rightIcon={<CouchIcon />} />
+        <AppBar
+          title='FYC'
+          rightIcon={<CouchIcon />}
+          />
 
         <Router>
           <Switch>

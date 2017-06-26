@@ -1,6 +1,8 @@
 import React, { PureComponent } from 'react'
 import { Link } from 'react-router-dom'
 import './styles.css'
+import { List, ListItem, ListSubHeader, ListDivider, ListCheckbox } from 'react-toolbox/lib/list';
+
 
 class Home extends PureComponent {
 
@@ -9,19 +11,28 @@ class Home extends PureComponent {
   }
 
   render() {
-    const { data = {} } = this.props
-    const { devices = [] } = data
+    const { data = {}, history } = this.props
+    const { devices = [], types = [] } = data
     return (
       <div className="section">
-        <ul>
-          {devices.sort((a, b) => a.id > b.id).map(item => 
-            <li key={item.id}>
-              <Link to={`/${item.id}`}>
-                {item.label}
-              </Link>
-            </li>    
-          )}
-        </ul>
+        <List selectable ripple>
+          <ListSubHeader caption='Your devices' />
+          {devices.sort((a, b) => a.id > b.id).map(item => {
+            const { id, label, type } = item
+            const myType = types.find(x => x.id === type)
+            const { label: typeLabel } = myType
+            return (
+              <ListItem key={id}
+                avatar='https://maxcdn.icons8.com/Share/icon/User_Interface//horizontal_settings_mixer1600.png'
+                caption={label}
+                legend={typeLabel}
+                onClick={() => {
+                  history.push(`/${id}`)
+                }}
+              />
+            )
+          })}
+        </List>
       </div>
     )
   }
