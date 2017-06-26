@@ -1,4 +1,21 @@
+.wrapper{
+  padding: 20px;
+}
+
+.controls{
+  padding: 10px 0;
+}
+
+.controls button{
+  padding: 20px;
+  margin: 3px;
+}
+
 textarea{
-  width: 300px;
-  height: 300px;
+  width: 90%;
+  height: 400px;
+}
+
+.json{
+  visibility: hidden;
 }
