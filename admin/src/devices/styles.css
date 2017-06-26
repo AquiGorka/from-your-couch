@@ -26,3 +26,11 @@
 .device-card{
   position: relative;
 }
+
+.device-add input{
+  margin: 6px
+}
+
+.device-add select{
+  margin: 6px
+}

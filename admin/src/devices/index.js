@@ -40,6 +40,9 @@ class Devices extends PureComponent {
             )}
           </Panel>
           <Sidebar pinned={true}>
+            <Card>
+              <CardTitle title="Actions" />
+            </Card>
             <NewDevice onAdd={this.onAdd} types={types} />
           </Sidebar>
         </Layout>
@@ -144,27 +147,35 @@ class NewDevice extends PureComponent {
     const { types } = this.props
     return (
       <Card>
-        <CardTitle title="Add new Device" />
-        <CardText>
-          <Input type="text" placeholder="Label" onChange={value => {
-            this.setState({ label: value })
-          }} />
-          <Dropdown ref="type"
-            auto
-            source={types.map(item => {
-              return { label: item.label, value: item.id }
-            })}
-            value={this.state.type}
-            onChange={value => {
-              this.setState({ type: value })
-            }}
-            />
-          <Input type="text" ref="verb" placeholder="Verb" onChange={value => {
-            this.setState({ verb: value })
-          }} />
-          <Input type="text" ref="url" placeholder="URL" onChange={value => {
-            this.setState({ url: value })
-          }} />
+        <CardTitle subtitle="Add new Device" />
+        <CardText className="device-add">
+          <div>
+            <input type="text" placeholder="Label" onChange={value => {
+              this.setState({ label: value })
+            }} />
+          </div>
+          <div>
+            <select
+              defaultValue={this.state.type}
+              onChange={() => {
+                this.setState({ type: this.refs.select.value })
+              }}
+              ref="select">
+              {types.map(item => {
+                return <option value={item.id}>{item.label}</option>                   
+              })}
+            </select>
+          </div>
+          <div>
+            <input type="text" ref="verb" placeholder="Verb" onChange={value => {
+              this.setState({ verb: value })
+            }} />
+          </div>
+          <div>
+            <input type="text" ref="url" placeholder="URL" onChange={value => {
+              this.setState({ url: value })
+            }} />
+          </div>
           <Button label="Add" onClick={this.onAdd} />
         </CardText>
       </Card>
