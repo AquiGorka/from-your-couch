@@ -63,7 +63,7 @@ class Device extends PureComponent {
     const { label: typeLabel } = type
     return (
       <div>
-        <Card>
+        <Card className="card-layout">
           <CardTitle
             avatar="https://placeimg.com/80/80/animals"
             title={deviceLabel}
@@ -74,7 +74,7 @@ class Device extends PureComponent {
             image="https://placeimg.com/800/450/nature"
             />
           <CardText>
-            <ul>
+            <ul className="list">
               {controls.sort((a, b) => a.id > b.id).map((item, index) => {
                 const controlState = state.find(x => x.id === item.id)
                 const { value } = state
@@ -83,19 +83,15 @@ class Device extends PureComponent {
                   return <li key={index}></li>
                 }
                 return (
-                  <li key={item.id}>
-                    <div>
-                      <div>{ label }</div>
-                      <div>{ value }</div>
-                      <ControlMapper
-                        data={item.data}
-                        state={controlState}
-                        type={type}
-                        onUpdate={(id, val) => {
-                          this.onUpdate(device.id, id, value)
-                        }}
-                        label={label} />
-                    </div>
+                  <li className="list-item" key={item.id}>
+                    <div className="label">{ label }</div>
+                    <ControlMapper
+                      data={item.data}
+                      state={controlState}
+                      type={type}
+                      onUpdate={(id, val) => {
+                        this.onUpdate(device.id, id, value)
+                      }} />
                   </li>
                 )
               })}

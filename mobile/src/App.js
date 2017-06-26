@@ -45,6 +45,7 @@ class App extends Component {
         <AppBar
           title='FYC'
           rightIcon={<CouchIcon />}
+          onRightIconClick={() => { window.location = '/'}}
           />
 
         <Router>
