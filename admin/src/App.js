@@ -50,9 +50,9 @@ class App extends Component {
         <Layout>
           <NavDrawer pinned={true}>
             <List ripple className="menu">
-              <ListItem avatar="https://maxcdn.icons8.com/Share/icon/p1em/Very_Basic//home1600.png" caption="Home" to="/" />
-              <ListItem avatar="http://icons.iconarchive.com/icons/icons8/windows-8/512/Mobile-Multiple-Devices-icon.png" caption="Devices" to="/devices" />
-              <ListItem avatar="https://cdn1.iconfinder.com/data/icons/flat-web-browser/100/settings-512.png" caption="Types" to="/types" />
+              <ListItem avatar="https://maxcdn.icons8.com/Share/icon/p1em/Very_Basic//home1600.png" caption="Current State" to="/" />
+              <ListItem avatar="http://icons.iconarchive.com/icons/icons8/windows-8/512/Mobile-Multiple-Devices-icon.png" caption="Configure Devices" to="/devices" />
+              <ListItem avatar="https://cdn1.iconfinder.com/data/icons/flat-web-browser/100/settings-512.png" caption="Configure Types" to="/types" />
             </List>
           </NavDrawer>
           <Panel>
