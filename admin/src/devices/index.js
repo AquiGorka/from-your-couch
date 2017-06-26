@@ -5,6 +5,10 @@ class Devices extends PureComponent {
 
   onAdd = () => {
     const { types = [] } = this.props.data
+    if (types.length === 0) {
+      alert('Please add a new Device Type before trying to add new Devices')
+      return
+    }
     const typeId = this.refs.type.value
     const type = types.find(x => x.id === typeId)
     const { controls = [] } = type

@@ -20,21 +20,21 @@ class Home extends PureComponent {
         <ul>
           {devices.sort((a, b) => a.id > b.id).map(item => {
             const type = types.find(x => x.id === item.type)
-            const { label = '' } = type
-            const { state = [] } = item
+            const { label: typeLabel = '' } = type
+            const { state = [], label  } = item
             return (
               <li key={item.id}>
                 <div>
-                  {`${item.label} (${label})`}
+                  {`${label} (${typeLabel})`}
                 </div>
                 <ul>
                   {state.sort((a, b) => a.id > b.id).map(curr => {
                     const { controls = [] } = type
                     const control = controls.find(x => x.id === curr.id)
-                    const { label = '' } = control
+                    const { label: controlLabel = '' } = control
                     return (
                       <li key={`${item.id}_${curr.id}`}>
-                        <div>{`${label}: ${curr.value}`}</div>
+                        <div>{`${controlLabel}: ${curr.value}`}</div>
                       </li>
                     )
                   })}

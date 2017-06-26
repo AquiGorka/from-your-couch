@@ -25,13 +25,13 @@ class Types extends PureComponent {
       .concat([{ controls: newControls, ...other }])
     // update states
     // new state id: controlId, value: 0
-    const { devices, ...another } = rest
+    const { devices = [], ...another } = rest
     // filter all devices that use the type
     const needToUpdate = devices.filter(device => device.type === typeId)
     const noNeedToUpdate = devices.filter(device => device.type !== typeId)
     // new state
     const updatedDevices = needToUpdate.map(item => {
-      const { state, ...rest } = item
+      const { state = [], ...rest } = item
       const newState = state.concat([{ id: newId, value: 0 }])
       return { state: newState, ...rest }
     })
@@ -43,19 +43,19 @@ class Types extends PureComponent {
   
   onDeleteControl = (typeId, controlId) => {
     const { types = [], ...rest } = this.props.data
-    const { controls, ...other } = types.find(x => x.id === typeId)
+    const { controls = [], ...other } = types.find(x => x.id === typeId)
     const newControls = controls.filter(x => x.id !== controlId)
     const newTypes = types.filter(x => x.id !== typeId)
       .concat([{ controls: newControls, ...other }]) 
     // update states
     // remove state: id: controlId
-    const { devices, ...another } = rest
+    const { devices = [], ...another } = rest
     // filter all devices that use the type
     const needToUpdate = devices.filter(device => device.type === typeId)
     const noNeedToUpdate = devices.filter(device => device.type !== typeId)
     // filter out removed states
     const updatedDevices = needToUpdate.map(item => {
-      const { state, ...rest } = item
+      const { state = [], ...rest } = item
       const newState = state.filter(x => x.id !== controlId)
       return { state: newState, ...rest }
     })
@@ -67,7 +67,7 @@ class Types extends PureComponent {
 
   onUpdateControl = (typeId, controlId,  newControl) => {
     const { types = [], ...rest } = this.props.data
-    const { controls, ...other } = types.find(x => x.id === typeId)
+    const { controls = [], ...other } = types.find(x => x.id === typeId)
     const newControls = controls.filter(x => x.id !== controlId)
       .concat([newControl])
     const newTypes = types.filter(x => x.id !== typeId)
@@ -75,7 +75,7 @@ class Types extends PureComponent {
     // update states
     // modify state to value: zero, id: controlId (like resetting)
     // new state id: controlId, value: 0
-    const { devices, ...another } = rest
+    const { devices = [], ...another } = rest
     // filter all devices that use the type
     const needToUpdate = devices.filter(device => device.type === typeId)
     const noNeedToUpdate = devices.filter(device => device.type !== typeId)
@@ -105,15 +105,9 @@ class Types extends PureComponent {
 
   onUpdate = (id) => {
     const { types, ...rest } = this.props.data
-    const modifiedType = {
-      id: id,
-      label: this.refs[`label_${id}`].value,
-      type: this.refs[`type_${id}`].value,
-      api: {
-        verb: this.refs[`verb_${id}`].value,
-        url: this.refs[`url_${id}`].value,
-      },
-    }
+    const type = types.find(x => x.id === id)
+    const { label, ...other } = type
+    const modifiedType = { label: this.refs[`label_${id}`].value, ...other }
     const newTypes = types.filter(x => x.id !== id).concat([modifiedType]) 
     this.props.onUpdate({ types: newTypes,  ...rest })
   }
