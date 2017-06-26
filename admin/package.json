@@ -20,6 +20,8 @@
   "devDependencies": {
     "nwb": "0.16.x",
     "react-md-spinner": "^0.2.4",
+    "react-progress-label": "^1.2.2",
+    "react-toggle": "^4.0.1",
     "react-toolbox": "^2.0.0-beta.12"
   },
   "author": "Gorka",

@@ -1,0 +1,33 @@
+.list{
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.wrapper{
+  display: flex;
+  flex-direction: column;
+  justify-content: stretch;
+}
+
+.item{
+  position: relative;
+  display: inline-block;
+  height: 120px;
+  width: 33.333333%;
+  border:1px solid #CCC;
+  box-shadow: 1px 1px 1px 1px #CCC;
+  overflow: hidden;
+}
+
+.label{
+  padding: 10px;
+  text-align: center;
+}
+
+.display{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50%;
+}
