@@ -19,6 +19,7 @@
   },
   "devDependencies": {
     "nwb": "0.16.x",
+    "react-md-spinner": "^0.2.4",
     "react-toolbox": "^2.0.0-beta.12"
   },
   "author": "Gorka",

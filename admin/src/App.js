@@ -15,6 +15,7 @@ import Types from './types'
 import { version } from '../package.json'
 import { AppBar, IconButton } from 'react-toolbox';
 import { Layout, NavDrawer, Panel } from 'react-toolbox';
+import MDSpinner from "react-md-spinner";
 
 const NotFound = () => { return (<div>NotFound</div>) }
 
@@ -37,8 +38,9 @@ class App extends Component {
     firebase.database().ref().set(data);
   }
   render() {
-    if (this.state.synching) {
-      return <div>Loading</div>
+    const { synching } = this.state
+    if (synching) {
+      return <div className="spinner"><MDSpinner size="64" /></div>
     }
     return (
       <Layout>
@@ -49,22 +51,22 @@ class App extends Component {
             <li><div to="/types">Types</div></li>
           </ul>
         </NavDrawer>
-          <Panel>
-            <AppBar title="From your Couch" />
-            <Router>
-              <Switch>
-                <Route exact path='/' render={(props) =>
-                  <Home {...props} data={this.state.data} onUpdate={this.onUpdate} />} />
-                <Route exact path='/devices' render={(props) =>
-                  <Devices {...props} data={this.state.data} onUpdate={this.onUpdate} />} />
-                <Route exact path='/types' render={(props) =>
-                  <Types {...props} data={this.state.data} onUpdate={this.onUpdate} />} />
-                <Route exact path='/raw' render={(props) =>
-                  <Raw {...props} data={this.state.data} onUpdate={this.onUpdate} />} />
-                <Route component={NotFound} />
-              </Switch>
-            </Router>
-          </Panel>
+        <Panel>
+          <AppBar title="From your Couch" />
+          <Router>
+            <Switch>
+              <Route exact path='/' render={(props) =>
+                <Home {...props} data={this.state.data} onUpdate={this.onUpdate} />} />
+              <Route exact path='/devices' render={(props) =>
+                <Devices {...props} data={this.state.data} onUpdate={this.onUpdate} />} />
+              <Route exact path='/types' render={(props) =>
+                <Types {...props} data={this.state.data} onUpdate={this.onUpdate} />} />
+              <Route exact path='/raw' render={(props) =>
+                <Raw {...props} data={this.state.data} onUpdate={this.onUpdate} />} />
+              <Route component={NotFound} />
+            </Switch>
+          </Router>
+        </Panel>
       </Layout>
     )
   }
