@@ -3,6 +3,7 @@ import Slider from '../controls/slider.js'
 import Select from '../controls/select.js'
 import Button from '../controls/button.js'
 import './styles.css'
+import { Card, CardMedia, CardTitle, CardText } from 'react-toolbox/lib/card';
 
 class Input extends PureComponent {
   render() {
@@ -58,35 +59,49 @@ class Device extends PureComponent {
     const { state } = device
     const type = types.find(x => x.id === device.type)
     const { controls = [] } = type
+    const { label: deviceLabel } = device
+    const { label: typeLabel } = type
     return (
       <div>
-        <div>{`${device.label} (${type.label})`}</div>
-        <ul>
-          {controls.sort((a, b) => a.id > b.id).map((item, index) => {
-            const controlState = state.find(x => x.id === item.id)
-            const { value } = state
-            const { id, type, label } = item
-            if (!controlState) {
-              return <li key={index}></li>
-            }
-            return (
-              <li key={index}>
-                <div>
-                  <div>{ label }</div>
-                  <div>{ value }</div>
-                  <ControlMapper
-                    data={item.data}
-                    state={controlState}
-                    type={type}
-                    onUpdate={(id, val) => {
-                      this.onUpdate(device.id, id, value)
-                    }}
-                    />
-                </div>
-              </li>
-            )
-          })}
-        </ul>
+        <Card>
+          <CardTitle
+            avatar="https://placeimg.com/80/80/animals"
+            title={deviceLabel}
+            subtitle={typeLabel}
+            />
+          <CardMedia
+            aspectRatio="wide"
+            image="https://placeimg.com/800/450/nature"
+            />
+          <CardText>
+            <ul>
+              {controls.sort((a, b) => a.id > b.id).map((item, index) => {
+                const controlState = state.find(x => x.id === item.id)
+                const { value } = state
+                const { id, type, label } = item
+                if (!controlState) {
+                  return <li key={index}></li>
+                }
+                return (
+                  <li key={item.id}>
+                    <div>
+                      <div>{ label }</div>
+                      <div>{ value }</div>
+                      <ControlMapper
+                        data={item.data}
+                        state={controlState}
+                        type={type}
+                        onUpdate={(id, val) => {
+                          this.onUpdate(device.id, id, value)
+                        }}
+                        label={label} />
+                    </div>
+                  </li>
+                )
+              })}
+            </ul>
+          </CardText>
+        </Card>
       </div>
     )
   }

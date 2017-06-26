@@ -1,20 +1,17 @@
 import React, { PureComponent } from 'react'
+import Switch from 'react-toolbox/lib/switch';
 
 class Button extends PureComponent {
   render() {
-    const { state, onUpate } = this.props
+    const { state, onUpate, label = '' } = this.props
     const { id, value } = state
     return (
-      <div>
-        <input
-          ref="input"
-          type="checkbox"
-          checked={!!value}
-          onChange={() => {
-            this.props.onUpdate({ id, value: !!value ? 0 : 1 })
-          }}
-        />
-      </div>
+      <Switch
+        checked={!!value}
+        label={label}
+        onChange={() => {
+          this.props.onUpdate({ id, value: !!value ? 0 : 1 })
+        }} />
     )
   }
 }
