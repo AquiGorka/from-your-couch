@@ -11,19 +11,19 @@ This app allows you to configure your different devices.
 
 This app has 4 sections:
 
-*Home (/)*
+**Home (/)**
 
 This sections displays the current state of the controls associated with the configured devices.
 
-*Devices (/devices)*
+**Devices (/devices)**
 
 This section allows you to add, remove and modify devices and the settings for each one (api verb, api url and the device type). Bear in mind that to create devices there needs to be at least one device type configured.
 
-*Types (/types)*
+**Types (/types)**
 
 This sections allows you to add, remove and modify device types. It also allows you to add, remove or modify the controls associated with each device type. Finally it allows to modify the settings for the data list associated wiht controls of the type 'select'.
 
-*Raw (/raw)*
+**Raw (/raw)**
 
 This section allows you to modify the current state of the persistance layer directly modifying the json data. It allows you to reset the data to a pre-configured inital setup of the persistance layer directly modifying the json data. It allows you to reset the data to a pre-configured inital setup.
 
@@ -33,11 +33,11 @@ This app allows you to manipulate the state of each device.
 
 This app has 2 sections:
 
-*Home (/)*
+**Home (/)**
 
 This sections renders a list of all the configured devices.
 
-*Device (/)*
+**Device (/)**
 
 This sections allows you to modify the configured control settings for the device type associated with the device selected.
 
